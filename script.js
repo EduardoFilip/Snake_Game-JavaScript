@@ -10,11 +10,14 @@ let snake = [];
 
 let direction = "right";
 
+
+// Criar Background //
 function criarBG(){ // Funcao para definir background //
     context.fillStyle = "lightgreen"; // fillStyle trabalha com o Context do Canvas //
     context.fillRect(0, 0, 16 * box, 16 * box); // fillRect, irá desenhar o "retangulo", onde irá ocorrer o game **** Trabalha com 4 parametros: posicao de X e Y, altura e largura//
 }
 
+// Criar Cobra //
 function criarCobrinha (){
     for(i=0; i < snake.length; i++){ // Vai percorrer todo o tamanho do array e vai incrementar //
     context.fillStyle = "green"; // Setando a cor verde //
@@ -22,7 +25,28 @@ function criarCobrinha (){
     } // tamanho de x e y setado lá em cima no let snake, o box setado em let box - tamanho de um quadradinho //
 }
 
+document.addEventListener('keydown', update); // Evento listener, irá chamar a funcao update quando o clique no keydown for realizado //
+
+function update (event) {
+    if(event.keyCode == 37 && direction !="right") direction = "left";
+    if(event.keyCode == 38 && direction != "down") direction = "up";
+    if(event.keyCode == 39 && direction != "left") direction = "right";
+    if(event.keyCode == 40 && direction != "up") direction = "down"; 
+}
+
+
+
+
+
+// Iniciar Jogo //
+
 function iniciarJogo(){
+
+    // Criando o "loop" para a cobrinha nao sair do quadrado //
+    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0; // Se a posicao ZERO do snake for maior que 15 na direcao Right, a posicao ZERO do snake recebera ZERO novamente.
+    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box; // Se a posicao ZERO do snake for menor que ZERO (no caso -1) na direcao left, a posicao ZERO do snake recebera 16.
+    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0; // Se a posicao ZERO do snake for maior que 15 na direcao down, a posicao ZERO do snake recebera ZERO novamente.
+    if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box; // Se a posicao ZERO do snake for menor que 0 na direcao up, a posicao ZERO do snake recebera ZERO novamente.
 criarBG();
 criarCobrinha();
 
