@@ -10,6 +10,8 @@ let snake = [];
 
 let direction = "right";
 
+
+// Criando variavel food em lugares aleatorios //
 let food = {
     x: Math.floor(Math.random() * 15 + 1) * box, // Math.floor irá retornar um número INTEIRO que esteja dentro de Math.random. 
     
@@ -91,8 +93,14 @@ if (direction == "up") snakeY -= box; // Se a direcao for para cima, reduz um bo
 
 if (direction == "down") snakeY += box; // Se a direcao for para baixo, acrescenta um box //
 
-snake.pop(); // funcao que retira o ultimo elemento do array //
+if(snakeX != food.x || snakeY != food.y) { //Se a posicao do snakeX for dirente da posicao do foodX OU se a posicao do snakeY for diferente da posicao do foodY
 
+snake.pop(); // POP, retira o ultimo elemento do array //
+}
+else {
+    food.x = Math.floor(Math.random() * 15 + 1) * box; // Cria a comida aleatoria novamente
+    food.y = Math.floor(Math.random() * 15 + 1) * box; // Cria a comida aleatoria novamente
+}
 let newHead = {
     x: snakeX,
     y: snakeY
