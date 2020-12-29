@@ -71,11 +71,26 @@ function update (event) {
 
 function iniciarJogo(){
 
+
     // Criando o "loop" para a cobrinha nao sair do quadrado //
     if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0; // Se a posicao ZERO do snake for maior que 15 na direcao Right, a posicao ZERO do snake recebera ZERO novamente.
     if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box; // Se a posicao ZERO do snake for menor que ZERO (no caso -1) na direcao left, a posicao ZERO do snake recebera 16.
     if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0; // Se a posicao ZERO do snake for maior que 15 na direcao down, a posicao ZERO do snake recebera ZERO novamente.
     if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box; // Se a posicao ZERO do snake for menor que 0 na direcao up, a posicao ZERO do snake recebera ZERO novamente.
+
+
+    
+    // Game Over //
+    // i -> Corpo da cobra //
+
+    for (i = 1; i < snake.length; i++) {
+        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y) { // Se a posicao ZERO da snakeX (cabeca) for igual a posicao X do corpo (i) E a posicao ZERO da snake Y (traseira) for a mesma que a posicao Y do corpo (I) //
+            clearInterval(jogo); // Pausa o jogo //
+            alert('Game Over :(') // Alerta //
+        }
+    }    
+
+
 criarBG();
 criarCobrinha();
 drawFood();
