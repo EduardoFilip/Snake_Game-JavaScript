@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    justify-content: center; /* Alinhar horizontalmente no meio*/
+    align-items: center; /* Alinha verticalmente no meio */
+
+    flex-direction: column; /* Para deixar os elementos um abaixo do outro */
+}
+
+.h1 {
+    color: green;
+    border: grey;
+    border-width: 10px;
+    border: ridge;
+}
